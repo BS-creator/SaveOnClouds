@@ -43,7 +43,7 @@ namespace SaveOnClouds.Web.Controllers
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirecTtoAction("SignIn");
+            // return RedirectToAction("SignIn");
         }
 
         #endregion
