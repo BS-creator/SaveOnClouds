@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SaveOnClouds.Web.Models.Accounts;
-using SaveOnClouds.Web.Services;
-using SaveOnClouds.Web.Services.DataAccess;
+// using SaveOnClouds.Web.Models.Accounts;
+// using SaveOnClouds.Web.Services;
+// using SaveOnClouds.Web.Services.DataAccess;
 
 namespace SaveOnClouds.Web.Controllers
 {
@@ -43,7 +43,7 @@ namespace SaveOnClouds.Web.Controllers
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();
-            // return RedirectToAction("SignIn");
+            return RedirecTtoAction("SignIn");
         }
 
         #endregion
