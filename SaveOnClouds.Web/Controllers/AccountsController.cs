@@ -20,9 +20,9 @@ namespace SaveOnClouds.Web.Controllers
         private readonly IEmailSender _emailSender;
         private readonly IWebHostEnvironment _hostingEnvironment;
         private readonly ILogger _logger;
-        // private readonly SignInManager<IdentityUser> _signInManager;
-        // private readonly UserManager<IdentityUser> _userManager;
-        // private readonly IDataAccess _dataAccess;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IDataAccess _dataAccess;
 
         public AccountsController(ILogger<AccountsController> logger, UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IWebHostEnvironment hostingEnvironment,
