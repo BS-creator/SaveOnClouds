@@ -8,23 +8,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
-// using Microsoft.Extensions.Logging;
-// using SaveOnClouds.Web.Models.Accounts;
+using Microsoft.Extensions.Logging;
+using SaveOnClouds.Web.Models.Accounts;
 // using SaveOnClouds.Web.Services;
 // using SaveOnClouds.Web.Services.DataAccess;
 
-namespace SaveOnClouds.Web.Controllers
-{
-    public class AccountsController : Controller
-    {
-        private readonly IEmailSender _emailSender;
-        private readonly IWebHostEnvironment _hostingEnvironment;
-        private readonly ILogger _logger;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IDataAccess _dataAccess;
+// namespace SaveOnClouds.Web.Controllers
+// {
+//     public class AccountsController : Controller
+//     {
+//         private readonly IEmailSender _emailSender;
+//         private readonly IWebHostEnvironment _hostingEnvironment;
+//         private readonly ILogger _logger;
+//         private readonly SignInManager<IdentityUser> _signInManager;
+//         private readonly UserManager<IdentityUser> _userManager;
+//         private readonly IDataAccess _dataAccess;
 
-        public AccountsController(ILogger<AccountsController> logger, UserManager<IdentityUser> userManager,
+//         public AccountsController(ILogger<AccountsController> logger, UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager, IEmailSender emailSender, IWebHostEnvironment hostingEnvironment,
             IDataAccess dataAccess)
         {
