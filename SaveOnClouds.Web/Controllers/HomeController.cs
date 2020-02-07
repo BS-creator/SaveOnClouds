@@ -39,9 +39,9 @@ namespace SaveOnClouds.Web.Controllers
             throw new NotImplementedException();
         }
 
-        public IActionResult Dashboard()
-        {
-            throw new NotImplementedException();
-        }
+        // public IActionResult Dashboard()
+        // {
+        //     throw new NotImplementedException();
+        // }
     }
 }
