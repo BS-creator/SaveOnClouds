@@ -34,14 +34,14 @@ namespace SaveOnClouds.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        // public IActionResult CriticalError(string errorType)
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public IActionResult CriticalError(string errorType)
+        {
+            throw new NotImplementedException();
+        }
 
-        // public IActionResult Dashboard()
-        // {
-        //     throw new NotImplementedException();
-        // }
+        public IActionResult Dashboard()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
