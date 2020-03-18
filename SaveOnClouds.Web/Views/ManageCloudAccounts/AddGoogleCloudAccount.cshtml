@@ -1,0 +1,53 @@
+﻿@model SaveOnClouds.Web.Models.ManageCloudAccounts.GoogleCloudAccountViewModel;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/GoogleCloud.js" asp-append-version="true"></script>
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <input type="hidden" asp-for="UserId" />
+
+    <div id="add_google_account_form">
+
+        <div class="form-group">
+            <label asp-for="Name">Account Name:</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ProjectId">Project Id:</label>
+            <input type="text" asp-for="ProjectId" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="KeyJson">Key Json Data:</label>
+            <textarea asp-for="KeyJson" class="form-control"></textarea>
+        </div>
+
+        <div class="red" id="messages"></div>
+        <div class="form-group list-group-horizontal">
+            <button type="button" id="btnTestConnection">Test Connection</button>
+            <button type="button" id="btnCreate">Create Account</button>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            GoogleCloud.Bind();
+        });
+    </script>
+</body>
+</html>

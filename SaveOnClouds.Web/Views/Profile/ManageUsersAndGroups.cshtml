@@ -1,0 +1,188 @@
+﻿@model object
+
+@{
+    ViewData["Title"] = "Manage Users and Teams";
+}
+
+<h2>Manage Users and Teams</h2>
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab" aria-controls="nav-users" aria-selected="true">Users</a>
+        <a class="nav-item nav-link" id="nav-teams-tab" data-toggle="tab" href="#nav-teams" role="tab" aria-controls="nav-teams" aria-selected="false">Teams</a>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-users" role="tabpanel" aria-labelledby="nav-users-tab">
+        <div class="row margin-top-bottom-10">
+            <button id="BtnInviteUsers" class="btn-primary btn-sm" data-toggle="modal" data-target="#InviteUsersModal">Invite Users</button>
+        </div>
+        <div class="row">
+            <div class="table-responsive-md">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Email</th>
+                            <th scope="col">Invited On</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane fade" id="nav-teams" role="tabpanel" aria-labelledby="nav-teams-tab">
+        <div class="row margin-top-bottom-10">
+            <button id="BtnCreateTeam" class="btn-primary btn-sm" data-toggle="modal" , data-target="#CreateTeamModal">Create Team</button>
+        </div>
+        <div class="row">
+            <div class="table-responsive-md">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Team</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="InviteUsersModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="InviteUsersModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="InviteUsersModalLongTitle">Invite Users</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row margin-top-bottom-10">
+                        <button id="BtnAddAnotherUser" type="button" class="btn btn-primary btn-sm">Add another user</button>
+                    </div>
+                    <div class="row">
+                        <form>
+                            <div class="form-group row">
+                                <label for="InvitedUser0" class="col-sm-3 col-form-label">Email:</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="InvitedUser0" name="InvitedUser0" data-rule-required="true" data-msg-required="Email is required to invite user" data-rule-email="true" data-msg-email="Email address must be in the format of name@domain.com" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="BtnInviteUsersSave">Invite</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="AssignTeamsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="AssignTeamsModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AssignTeamsModalLongTitle">Assign teams</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="BtnUserTeamsAssign">Assign</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CreateTeamModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="CreateTeamModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateTeamModalLongTitle">Create New Team</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <div class="form-group row">
+                            <label for="NewTeamName" class="col-sm-5 col-form-label">Team Name:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="NewTeamName" name="NewTeamName"
+                                       data-rule-required="true" data-msg-required="Team name is required"
+                                       data-rule-maxlength="100" data-msg-maxlength="Team name cannot be longer than 100 characters" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="BtnCreateTeamSave">Create</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="EditTeamModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="EditTeamModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditTeamModalLongTitle">Edit Team</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form>
+                        <div class="form-group row">
+                            <label for="EditedTeamName" class="col-sm-5 col-form-label">Team Name:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="EditedTeamName" name="EditedTeamName"
+                                       data-rule-required="true" data-msg-required="Team name is required"
+                                       data-rule-maxlength="100" data-msg-maxlength="Team name cannot be longer than 100 characters" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="BtnEditTeamSave">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/UsersAndTeams.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            UsersAndTeams.Bind();
+            UsersAndTeams.LoadUsers();
+            UsersAndTeams.LoadTeams();
+        });
+    </script>
+}
+

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SaveOnClouds.Web.Models.ScheduleApi.Schedule>
+
+@{
+    ViewData["Title"] = "Schedules";
+}
+
+<h1>Schedules</h1>
+
+<p>
+    <a href="#" data-url="/schedule/edit" class="openEditScheduleModal">Create New</a>
+</p>
+<div class="schedule-list-wrapper">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade in" id="editScheduleModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link href="~/lib/scheduler/css/scheduler.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/scheduler/js/scheduler.js"></script>
+    <script src="~/js/Schedule.js" asp-append-version="true"></script>
+
+    <script asp-append-version="true">
+        $(function () {
+            Schedule.Init();
+        });
+    </script>
+}

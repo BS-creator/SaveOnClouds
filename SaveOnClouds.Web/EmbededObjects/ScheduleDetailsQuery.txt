@@ -1,0 +1,20 @@
+﻿ Begin Tran
+ 
+ Begin Try
+	Delete From ScheduleDetails
+    Where ScheduleId = {0};  
+
+	{1};
+
+	Commit Tran;
+ End Try
+ 
+ Begin Catch
+	Declare @severity int; 
+    Declare @state int;
+	Select @severity=error_severity(), @state=error_state();
+    RAISERROR('Error',@severity,@state);
+    --@@Error doesn't work
+
+	Rollback Tran
+ End Catch

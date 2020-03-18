@@ -1,0 +1,51 @@
+﻿@model SaveOnClouds.Web.Models.ManageCloudAccounts.AddAwsAccountViewModel;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddAwsAccount</title>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/Aws.js" asp-append-version="true"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <input type="hidden" asp-for="UserId" />
+
+    <div id="add_aws_account_form">
+        <div class="form-group">
+            AWS External ID: @Model.UserId
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Name">Account Name:</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="RoleArn">IAM Role Arn:</label>
+            <input type="text" asp-for="RoleArn" class="form-control" />
+        </div>
+            <div class="red" id="messages"></div>
+        <div class="form-group list-group-horizontal">
+            <button type="button" id="btnTestConnection">Test Connection</button>
+            <button type="button" id="btnCreate">Create Account</button>
+        </div>
+    </div>
+    <script>
+        $(function () {
+                Aws.Bind();
+            });
+    </script>
+</body>
+</html>

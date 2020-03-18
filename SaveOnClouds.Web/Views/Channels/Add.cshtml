@@ -1,0 +1,88 @@
+﻿@model SaveOnClouds.Web.Models.Channels.AddChannelViewModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+<h1>Add Channel</h1>
+
+
+Who will own this channel?
+
+<form asp-action="Upsert" method="post">
+
+    <input type="hidden" asp-for="@Model.OwnerUserId" />
+    <input type="hidden" asp-for="@Model.Channel.Id" />
+    <input type="hidden" asp-for="@Model.Channel.ChannelType" />
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <select asp-for="OwnerUserId">
+
+        @foreach (var owner in Model.Owners)
+        {
+            var selected = @owner.UserId.Equals(Model.OwnerUserId);
+            if (selected)
+            {
+                <option asp-for="OwnerUserId" value="@owner.UserId" selected> @owner.Email</option>
+            }
+            else
+            {
+                <option value="@owner.UserId"> @owner.Email</option>
+            }
+        }
+    </select>
+
+    <div class="form-group">
+        <label asp-for="Channel.Name">Name:</label>
+        <input type="text" asp-for="Channel.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.WebHookAddress">Endpoint:</label>
+        <input type="text" asp-for="Channel.WebHookAddress" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.InstanceStart">When instances start</label>
+        <input type="checkbox" asp-for="Channel.InstanceStart" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.InstanceStop">When instances stop</label>
+        <input type="checkbox" asp-for="Channel.InstanceStop" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.EnvStart">When environments start</label>
+        <input type="checkbox" asp-for="Channel.EnvStart" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.EnvStop">When environments stop[</label>
+        <input type="checkbox" asp-for="Channel.EnvStop" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.AccountErrors">Account Errors</label>
+        <input type="checkbox" asp-for="Channel.AccountErrors" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Channel.Enabled">Enabled</label>
+        <input type="checkbox" asp-for="Channel.Enabled" class="form-control" />
+    </div>
+
+
+
+
+
+    <button type="submit">Save</button>
+</form>
+
+<a asp-action="Index">Back</a>
+
+
+
+
+

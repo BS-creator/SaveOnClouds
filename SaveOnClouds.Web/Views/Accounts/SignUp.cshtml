@@ -1,0 +1,96 @@
+﻿@model SaveOnClouds.Web.Models.Accounts.SignUpViewModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+<h1>Register with Save On Clouds</h1>
+<p>
+    If you already have an account with us you can <a asp-action="SignIn">Sign In</a>
+</p>
+<form method="post" asp-action="SignUp">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @{
+        if (Model.UserAlreadyExists)
+        {
+            <div class="alert alert-warning">
+                A user with email address @Model.Email already exists.
+                If you have registered before, you can <a asp-action="SignIn">Sign In</a>
+            </div>
+        }
+    }
+    @Html.HiddenFor(model => model.TimeZone)
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        var dateTime = new Date().toISOString();
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("#TimeZone").val(dateTime);
+            });
+        });
+    </script>
+    <div class="form-group col-4">
+        <label asp-for="FullName">Full Name:</label>
+        <input type-="text" asp-for="FullName" required="true" class="form-control" />
+    </div>
+    <div class="form-group col-4">
+        <label asp-for="Email">Email:</label>
+        <input type-="text" asp-for="Email" required="true" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+
+        <label asp-for="Password">Password:</label>
+        <input type="password" required="true" asp-for="Password" class="form-control" />
+        <span>Your password must be at least 6-character long, have an upper-case letter and a digit.</span>
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="PasswordRepeat">Repeat Password:</label>
+        <input type="password" required="true" asp-for="PasswordRepeat" class="form-control" />
+    </div>
+    <div class="form-group col-4">
+        <label asp-for="Phone">Phone Number (Optional):</label>
+        <input type-="text" asp-for="Phone" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="CompanyName">Business Name (Optional):</label>
+        <input type-="text" asp-for="CompanyName" class="form-control" />
+    </div>
+
+    <div class="form-group col-4">
+        <label asp-for="FullAddress">Address (Optional):</label>
+        <input type-="text" asp-for="FullAddress" class="form-control" />
+    </div>
+
+    I have read and agreed to the <a asp-controller="Home" asp-action="Privacy">Terms & Conditions</a><input type="checkbox" asp-for="PrivacyPolicyAgreed" />
+
+    <button type="submit" id="btnSubmit" class="btn btn-primary">Register</button>
+</form>
+<p>
+    If you already have an account with us you can <a asp-action="SignIn">Sign In</a>
+</p>
+
+<div id="ExternalLogins">
+    Alternatively you can use your social media account to login!
+    <p>
+        <a asp-action="ExternalLogin" asp-route-provider="Google">Google </a>
+    </p>
+    <p>
+        <a asp-action="ExternalLogin" asp-route-provider="LinkedIn">LinkedIn</a>
+    </p>
+</div>
+
+<div class="alert alert-info">
+    <h2>We do not share your details</h2>
+    blah blah
+
+    <h2>We encrypt your details</h2>
+    blah blah
+
+    <h2>We do not store credit card details</h2>
+    blah blah
+
+    <h2>We only use secure and trusted service</h2>
+    we use AWS, Stripe, MailJet
+</div>

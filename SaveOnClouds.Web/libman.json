@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "jsdelivr",
+      "library": "jQuery-QueryBuilder@2.5.2",
+      "destination": "wwwroot/lib/jQuery-QueryBuilder/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "jquery-extendext@1.0.0",
+      "destination": "wwwroot/lib/jQuery.extendext/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "dot@1.1.3",
+      "destination": "wwwroot/lib/dot/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "moment@2.24.0",
+      "destination": "wwwroot/lib/moment/"
+    }
+  ]
+
+}

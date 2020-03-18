@@ -1,0 +1,54 @@
+﻿@model SaveOnClouds.Web.Models.EnvironmentApi.CloudEnvironment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="modal-header">
+    <h4 class="modal-title">Edit Environment</h4>
+    <button type="button" class="close" data-dismiss="modal">
+        &times;
+    </button>
+</div>
+<div class="modal-body">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" value="0" class="form-control" />
+        <div class="row">
+            <div class="form-group col-12">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control uniqueName" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group col-12">
+                <label asp-for="ScheduleId" class="control-label">Scheduler</label>
+                <select asp-for="ScheduleId" required min="1" title="Scheduler is required"></select>
+                <span asp-validation-for="ScheduleId" class="text-danger"></span>
+            </div>
+            <div class="form-group col-12" style="margin: auto;">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Enabled" checked />
+                    <label class="form-check-label">@Html.DisplayNameFor(model => model.Enabled)</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="builder"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="resource-list-wrapper">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <input type="button" value="Close" class="btn btn-secondary" data-dismiss="modal" />
+            <input type="button" value="Test" class="btn btn-secondary test-query" />
+            <input type="submit" value="Save" class="btn btn-primary submit-environment" />
+        </div>
+    </form>
+</div>

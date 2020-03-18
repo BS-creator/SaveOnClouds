@@ -1,0 +1,98 @@
+﻿@using SaveOnClouds.Notifications.Models
+@model List<SaveOnClouds.Notifications.Models.Channel>
+
+@functions {
+    private string GetChannelIcon(ChannelTypes cChannelType)
+    {
+        switch (cChannelType)
+        {
+            case ChannelTypes.Slack: return "/icons/slack.png";
+            case ChannelTypes.WebHook: return "/icons/webhook.png";
+            case ChannelTypes.MsTeams: return "/icons/msteams.png";
+            case ChannelTypes.GoogleChat: return "/icons/google.png";
+            case ChannelTypes.Email: return "/icons/email.png";
+            case ChannelTypes.PagerDuty: return "/icons/pagerduty.png";
+            default:
+                return "";
+        }
+    }
+
+    private string GetEnabledIcon(in bool cEnabled)
+    {
+        return cEnabled ? "/icons/enabled.png" : "/icons/disabled.png";
+    }
+
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your notification channels</h1>
+
+<div class="alert-info">
+    <p>
+        Please note that you will see the channels that you own as well as the channels owned by your organization.
+    </p>
+</div>
+
+<div id="divButtons">
+    <div class="alert-heading">
+        Add a New Channel
+    </div>
+    <div class="btn-group">
+        <a asp-action="Add" asp-route-channelType="1" class="btn btn-light">Slack</a>
+        <a asp-action="Add" asp-route-channelType="2" class="btn btn-light">WebHook</a>
+        <a asp-action="Add" asp-route-channelType="3" class="btn btn-light">Microsoft Teams</a>
+        <a asp-action="Add" asp-route-channelType="4" class="btn btn-light">Google Chat</a>
+        <a asp-action="Add" asp-route-channelType="5" class="btn btn-light">Email</a>
+        <a asp-action="Add" asp-route-channelType="6" class="btn btn-light">PagerDuty</a>
+    </div>
+</div>
+
+
+
+<table class="table-condensed">
+    <tr>
+        <th>
+            Channel Name
+        </th>
+        <th>
+            Channel Type
+        </th>
+        <th>
+            Created By
+        </th>
+        <th>
+            Enabled
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+
+
+
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>
+                @c.Name
+            </td>
+            <td>
+                <img src="@GetChannelIcon((ChannelTypes) c.ChannelType)" />
+            </td>
+            <td>
+                @c.OwnerName
+            </td>
+            <td>
+                <img src="@GetEnabledIcon(c.Enabled)" width="24" />
+            </td>
+            <td>
+
+                <a asp-action="Delete" asp-route-id="@c.Id" title="Delete"><img src="~/icons/delete.png" alt="Delete" /></a>
+                <a asp-action="Edit" asp-route-id="@c.Id" title="Edit"><img src="~/icons/edit.png" alt="Edit" /></a>
+            </td>
+        </tr>
+    }
+</table>
+

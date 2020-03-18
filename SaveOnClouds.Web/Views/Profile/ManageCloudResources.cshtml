@@ -1,0 +1,165 @@
+﻿@model string;
+
+@{
+    ViewBag.Title = "Manage Cloud Resources";
+}
+
+<h2>Manage Cloud Resources</h2>
+
+<div id="schedules-container" class="none">@Model</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <table id="grid-cloud-resources" class="table table-condensed, table-hover, table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="id" data-type="numeric" data-identifier="true" data-visible="false">ID</th>
+                    <th data-column-id="name" data-formatter="nameLink">Name</th>
+                    <th data-column-id="type">Type</th>
+                    <th data-column-id="account">Account</th>
+                    <th data-column-id="location">Location</th>
+                    <th data-column-id="status">Status</th>
+                    <th data-column-id="cost">Cost</th>
+                    <th data-column-id="scheduleId" data-type="numeric" data-formatter="scheduleDropdown" data-width="180px">Schedule</th>
+                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Actions</th>
+                    <th data-column-id="metadata" data-visible="false"></th>
+                    <th data-column-id="tags" data-visible="false"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="MetadataModal" class="modal fade" role="dialog" aria-labelledby="MetadataModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="MetadataModalLongTitle">Cloud Resource Metadata</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <h5>Tags</h5>
+                    </div>
+                    <div class="row">
+                        <ul id="tags-list" class="list-group">
+                        </ul>
+                    </div>
+                </div>
+                <div id="ec2-metadata-container" class="container">
+                    <div class="row">
+                        <div class="col-sm-5">ImageID:</div>
+                        <div id="ec2-metadata-imageId" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">LaunchTime:</div>
+                        <div id="ec2-metadata-launchTime" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">PrivateDnsName:</div>
+                        <div id="ec2-metadata-privateDnsName" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">PublicDnsName:</div>
+                        <div id="ec2-metadata-publicDnsName" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">PrivateIpAddress:</div>
+                        <div id="ec2-metadata-privateIpAddress" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">PublicIpAddress:</div>
+                        <div id="ec2-metadata-publicIpAddress" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">SubnetId:</div>
+                        <div id="ec2-metadata-subnetId" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">VpcId:</div>
+                        <div id="ec2-metadata-vpcId" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">PurchaseType:</div>
+                        <div id="ec2-metadata-purchaseType" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">OsType:</div>
+                        <div id="ec2-metadata-osType" class="col-sm-7"></div>
+                    </div>
+                </div>
+                <div id="rds-metadata-container" class="container">
+                    <div class="row">
+                        <div class="col-sm-5">AllocatedStorage:</div>
+                        <div id="rds-metadata-allocatedStorage" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">CharacterSetName:</div>
+                        <div id="rds-metadata-characterSetName" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Engine:</div>
+                        <div id="rds-metadata-engine" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">EngineVersion:</div>
+                        <div id="rds-metadata-engineVersion" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Endpoint Address:</div>
+                        <div id="rds-metadata-endpointAddress" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Endpoint Hosted Zone ID:</div>
+                        <div id="rds-metadata-endpointHostedZoneId" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Endpoint Port:</div>
+                        <div id="rds-metadata-endpointPort" class="col-sm-7"></div>
+                    </div>
+                </div>
+                <div id="as-metadata-container" class="container">
+                    <div class="row">
+                        <div class="col-sm-5">Instances:</div>
+                        <div id="as-metadata-instances" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Min:</div>
+                        <div id="as-metadata-min" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Max:</div>
+                        <div id="as-metadata-max" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Desired:</div>
+                        <div id="as-metadata-desired" class="col-sm-7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">Created:</div>
+                        <div id="as-metadata-created" class="col-sm-7"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="~/js/CloudResources.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            CloudResources.Init();
+        });
+    </script>
+}

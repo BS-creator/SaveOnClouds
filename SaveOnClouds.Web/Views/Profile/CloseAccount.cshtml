@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Personal Profile";
+}
+
+<h1>Close Your Account</h1>
+
+<div id="rightPanel">
+    <partial name="_ProfileNav" />
+</div>
+
+<div class="alert-warning">
+    Are you sure you are closing your account?!
+    If you are 100% sure you want to close your account, click on the button below!
+
+</div>
+
+<div class="alert-info">
+    <h2>What happens when I close my account?</h2>
+    If you are a paying member, we will charge you any outstanding amount. Then all your subscription will become inactive so your credit card won't get charged. 
+</div>
+<form asp-action="DisableAccount" method="post">
+    <button type="submit">Close My Account!</button>
+</form>

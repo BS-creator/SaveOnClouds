@@ -1,0 +1,57 @@
+﻿@using Microsoft.CodeAnalysis
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>View and Manage Cloud Accounts</h1>
+
+
+<div id="divCommands">
+    <a id="#add-aws-account" href="#" onclick="javascript:Aws.LoadAddAwsAccountForm();">Add AWS</a>
+    <a id="#add-azure-account" href="#" onclick="javascript:Azure.LoadAddAzureAccountForm();">Add Azure</a>
+    <a id="#add-google-cloud-account" href="#" onclick="javascript:GoogleCloud.LoadAddGoogleCloudAccountForm();">Add Google Cloud</a>
+</div>
+
+<div id="divGrid">
+    <table id="grid-cloud-accounts" class="table table-condensed table-hover table-striped">
+        <thead>
+            <tr>
+                <th data-column-id="Id">Id</th>
+                <th data-column-id="AccountName">Account Name</th>
+                <th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="modal fade" id="add-aws-modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">New AWS Account</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Modal Body</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            Aws.Bind();
+            Azure.Bind();
+            GoogleCloud.Bind();
+            Accounts.LoadCloudAccountList();
+        });
+    </script>
+}

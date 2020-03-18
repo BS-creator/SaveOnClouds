@@ -1,0 +1,18 @@
+﻿@model SaveOnClouds.Web.Models.Accounts.AcceptInvitationModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<h1>Accept invitation and join Save On Clouds</h1>
+
+<form method="post" asp-action="AcceptInvitationConfirm">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    <input type="hidden" asp-for="Token" />
+    <input type="hidden" asp-for="Email" />
+
+
+    I have read and agreed to the <a asp-controller="Home" asp-action="Privacy">Terms & Conditions</a><input type="checkbox" asp-for="PrivacyPolicyAgreed" />
+
+    <button type="submit" class="btn btn-primary">Accept Invitation</button>
+</form>

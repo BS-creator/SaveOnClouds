@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SaveOnClouds.Web.Models.EnvironmentApi.CloudEnvironment>
+
+@{
+    ViewData["Title"] = "Environments";
+}
+
+<h1>Environments</h1>
+
+<p>
+    <a href="#" data-url="/environment/edit" class="openEditEnvironmentModal">Create New</a>
+</p>
+<div class="environment-list-wrapper">
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade in" id="editEnvironmentModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <link href="~/lib/jQuery-QueryBuilder/dist/css/query-builder.default.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <script src="~/lib/jQuery.extendext/jquery-extendext.min.js"></script>
+    <script src="~/lib/dot/doT.min.js"></script>
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/lib/jQuery-QueryBuilder/dist/js/query-builder.min.js"></script>
+    <script src="~/js/queryBuilder-tagMatches.js"></script>
+    <script src="~/js/Environment.js" asp-append-version="true"></script>
+
+    <script asp-append-version="true">
+        $(function () {
+            Environment.Init();
+        });
+    </script>
+}

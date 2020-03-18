@@ -1,0 +1,61 @@
+﻿@model  SaveOnClouds.Web.Models.Profile.ProfileViewModel
+@{
+    ViewData["Title"] = "Personal Profile";
+}
+
+<h1>Index</h1>
+
+<div id="rightPanel">
+    <partial name="_ProfileNav"/>
+</div>
+
+@if (Model.ProfileUpdated)
+{
+    <div class="alert-info">
+        Your profile was successfully updated!
+    </div>
+}
+
+<div class="container-fluid">
+    <form asp-action="Index" method="post">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label asp-for="Email">@Model.Email</label>
+            <span>Email address cannot be changed.</span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="FullName">Full name:</label>
+            <input type="text" asp-for="FullName" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Phone">Phone number:</label>
+            <input type="text" asp-for="Phone" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Company">Company Name:</label>
+            <input type="text" asp-for="Company" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Address">Full address:</label>
+            <input type="text" asp-for="Address" />
+        </div>
+        @{
+            var timeZoneList = TimeZoneInfo
+                .GetSystemTimeZones()
+                .Select(t => new SelectListItem
+                {
+                    Text = t.DisplayName,
+                    Value = t.Id,
+                    Selected = Model != null && t.Id == Model.TimeZoneId
+                });
+        }
+        @Html.DropDownListFor(m => m.TimeZoneId, timeZoneList)
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
