@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using SaveOnClouds.Notifications.Data;
 using SaveOnClouds.Notifications.Models;
 using SaveOnClouds.Web.Models.Channels;
-using SaveOnClouds.Web.Services.DataAccess;
+// using SaveOnClouds.Web.Services.DataAccess;
 
 namespace SaveOnClouds.Web.Controllers
 {
@@ -30,7 +30,7 @@ namespace SaveOnClouds.Web.Controllers
             _dataAccess = dataAccess;
             _userManager = userManager;
         }
-        
+
         [Authorize]
         public async Task<IActionResult> Index()
         {
@@ -44,8 +44,8 @@ namespace SaveOnClouds.Web.Controllers
             var myUserId = myUser.Id;
 
             var myParentUserIds = await _dataAccess.GetAllParentUsersIds(myUser.Email);
-            
-            var allUserIds = new List<string>();  // For the sake of code readability 
+
+            var allUserIds = new List<string>();  // For the sake of code readability
             allUserIds.AddRange(myParentUserIds);
             allUserIds.Add(myUserId);
 
@@ -75,7 +75,7 @@ namespace SaveOnClouds.Web.Controllers
         {
             var user = await TryGetUser(User);
             var allOwnerAccounts = await GetLegitUsers(user);
-            
+
 
             var channel = new Channel
             {
