@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SaveOnClouds.Notifications.Data;
 using SaveOnClouds.Notifications.Models;
-using SaveOnClouds.Web.Models.Channels;
+// using SaveOnClouds.Web.Models.Channels;
 // using SaveOnClouds.Web.Services.DataAccess;
 
 namespace SaveOnClouds.Web.Controllers
